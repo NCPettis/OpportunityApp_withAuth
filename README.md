@@ -1,3 +1,5 @@
+![21 Savage](public/21savage.jpg)
+
 ## Installation
 
 1. Clone repo
@@ -5,9 +7,5 @@
 
 ## Usage
 
-1. run `node server.js`
-2. Navigate to `localhost:8080`
-
-## Credit
-
-Modified from Scotch.io's auth tutorial
+1. run `npm run savage`
+2. Navigate to `localhost:3000`
