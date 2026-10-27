@@ -1,6 +1,16 @@
 body{
-  background: red;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 5px solid blue;
+ 
 }
 h3{
   margin-top: 40px;
+}
+
+.jobBoard{
+  border: 5px solid red;
+}
+
+form{
+  border: 5px solid green;
 }

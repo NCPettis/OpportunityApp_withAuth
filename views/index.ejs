@@ -3,34 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>21 Savage Fans</title>
-  <link rel="shortcut icon" href="favicon.ico">
+  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
   <link rel="stylesheet" href="font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>21 Savage</h1>
-  <h2>Why you trappin so hard?</h2>
+  <h1>Opportunity App</h1>
+  <h2>Bring some structure to the job hunt</h2>
 
 
-  <h3>Messages</h3>
+  <h3>Welcome to the Job Hunt</h3>
+
+  <div class=" jobBoard">
   <ul class="messages">
   <% for(var i=0; i<messages.length; i++) {%>
     <li class="message">
-      <span><%= messages[i].name %></span>
-      <span><%= messages[i].msg %></span>
-      <span><%= messages[i].thumbUp %></span>
+      <span><%= messages[i].position %></span>
+      <span><%= messages[i].pay %></span>
+      <span><%= messages[i].company %></span>
+      <span><%= messages[i].link %></span>
+      <span><%= messages[i].apply %></span>
+      <span><%= messages[i].notes %></span>
+
+      <!-- <span><%= messages[i].thumbUp %></span>
       <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-      <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+      <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span> -->
       <span><i class="fa fa-trash" aria-hidden="true"></i></span>
     </li>
   <% } %>
   </ul>
+  </div>
 
-  <h2>Add a message</h2>
+  <h2>Add New Potential Role</h2>
 
   <form action="/messages" method="POST">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="message" name="msg">
+    <input type="text" placeholder="Position" name="position">
+    <input type="text" placeholder="Pay Range" name="pay">
+    <input type="text" placeholder="Company" name="company">
+    <input type="url" placeholder="link to posting" name="link">
+    <label for="apply">Did you apply?</label>
+      <select name="apply" id="apply">
+        <option value="Not Yet">Not Yet</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No Longer Accepting Apps">No Longer Accepting Apps</option>
+      </select>
+    <input type="text" placeholder="Notes" name="notes">
     <button type="submit">Submit</button>
   </form>
 

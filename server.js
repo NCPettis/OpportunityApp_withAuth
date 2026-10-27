@@ -8,7 +8,7 @@ const MongoClient = require('mongodb').MongoClient
 let db, collection;
 
 const url = process.env.MONGODB_URI;
-const dbName = "MovieNight";
+const dbName = "OpportunityApp";
 
 app.listen(3000, () => {
     MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/messages', (req, res) => {
-  db.collection('messages').insertOne({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
+  db.collection('messages').insertOne({position: req.body.position, pay: req.body.pay, company: req.body.company, link: req.body.link, apply: req.body.apply, notes: req.body.notes}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
     res.redirect('/')
@@ -56,7 +56,7 @@ app.put('/messages', (req, res) => {
 })
 
 app.delete('/messages', (req, res) => {
-  db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+  db.collection('messages').findOneAndDelete({position: req.body.position, pay: req.body.pay, company: req.body.company, link: req.body.link, apply: req.body.apply, notes: req.body.notes}, (err, result) => {
     if (err) return res.send(500, err)
     res.send('Message deleted!')
   })
