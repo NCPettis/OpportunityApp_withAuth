@@ -3,37 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>Opportunity App</title>
-  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+  <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="css/pico.jade.min.css">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+
+>
 </head>
 <body>
   <h1>Opportunity App</h1>
-  <h2>Bring some structure to the job hunt</h2>
+  <p>Bring some structure to the job hunt. “Because the callback you forgot about might be the opportunity you’ve been waiting for.”</p>
+  <p>Ever get a callback a month later and struggle to remember which position you applied for? Opportunity App helps you keep track of every opportunity, application status, and important detail—all in one place.</p>
 
 
-  <h3>Welcome to the Job Hunt</h3>
+  <h3>My Job Board</h3>
 
-  <div class=" jobBoard">
-  <ul class="messages">
-  <% for(var i=0; i<messages.length; i++) {%>
-    <li class="message">
-      <span><%= messages[i].position %></span>
-      <span><%= messages[i].pay %></span>
-      <span><%= messages[i].company %></span>
-      <span><%= messages[i].link %></span>
-      <span><%= messages[i].apply %></span>
-      <span><%= messages[i].notes %></span>
-
-      <!-- <span><%= messages[i].thumbUp %></span>
-      <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-      <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span> -->
-      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-    </li>
-  <% } %>
-  </ul>
+  <div class="jobBoard">
+    <table>
+      <thead>
+        <tr>
+          <th> Position</th>
+          <th> Pay </th>
+          <th> Company</th>
+          <th> Link</th>
+          <th> Applied</th>
+          <th> Notes </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<messages.length; i++) {%>
+          <tr data-id="<%= messages[i]._id %>">
+            <td><%= messages[i].position %></td>
+            <td><%= messages[i].pay %></td>
+            <td><%= messages[i].company %></td>
+            <td><a href="<%= messages[i].link %>" target="blank" rel="noopener"></a></td>
+            <td>
+              <select class="dropdown" data-id=<%= messages[i]._id %>
+                <% ['Not Yet', 'Yes', 'No', 'No Longer Accepting Apps'].forEach(opt => { %>
+                <option value="<%= opt %>" <%= messages[i].apply === opt ? 'selected' : '' %>><%= opt %></option>
+                <% }) %>
+              </select>
+            </td>
+            <td><%= messages[i].notes %></td>
+            <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+          </tr>
+        <% } %>
+      </tbody>        
+    </table>
   </div>
+
 
   <h2>Add New Potential Role</h2>
 

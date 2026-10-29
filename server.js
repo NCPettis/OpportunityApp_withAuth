@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
+const {ObjectId} = require('mongodb')
 
 let db, collection;
 
@@ -40,24 +41,31 @@ app.post('/messages', (req, res) => {
   })
 })
 
-app.put('/messages', (req, res) => {
-  db.collection('messages')
-  .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-    $set: {
-      thumbUp:req.body.thumbUp + 1
-    }
-  }, {
-    sort: {_id: -1},
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-    res.send(result)
-  })
+
+
+app.delete('/messages/:id', async (req, res) => {
+  
+  const result = db.collection('messages').deleteOne({
+    _id: new ObjectId(req.params.id)
+    
+  });
+
+  res.json({ deleted: result.deletedCount});
 })
 
-app.delete('/messages', (req, res) => {
-  db.collection('messages').findOneAndDelete({position: req.body.position, pay: req.body.pay, company: req.body.company, link: req.body.link, apply: req.body.apply, notes: req.body.notes}, (err, result) => {
-    if (err) return res.send(500, err)
-    res.send('Message deleted!')
-  })
-})
+app.put('/messages/:id/apply', async (req, res) =>{
+  console.log('hello does this work?')
+  const allowed = ['Not Yet', 'Yes', 'No', 'No Longer Accepting Apps'];
+  const { apply } = req.body;
+
+    if(!allowed.includes(apply)){
+      return res.status(400).json({error: 'Invalid value'})
+    }
+
+    await db.collection('messages').updateOne(
+      {_id: new ObjectId (req.params.id)},
+      {$set: { apply }}
+    );
+    
+    res.json({success: true});
+});
