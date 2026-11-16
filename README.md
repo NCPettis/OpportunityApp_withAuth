@@ -13,7 +13,7 @@ Node.js – Server-side JavaScript
 Express.js – Routes and handling requests
 MongoDB – Storing jobs and related data
 EJS – Displaying dynamic content
-Passport.js – User authentication
+
 
 ## Installation
 
