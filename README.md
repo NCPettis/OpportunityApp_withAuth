@@ -11,7 +11,7 @@ HTML & CSS – Structure and styling
 JavaScript – Front-end and back-end functionality
 Node.js – Server-side JavaScript
 Express.js – Routes and handling requests
-MongoDB – Storing user accounts and saved pins
+MongoDB – Storing jobs and related data
 EJS – Displaying dynamic content
 Passport.js – User authentication
 
